@@ -8,6 +8,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Papilertus-Birthdays" />
+            <option value="$PROJECT_DIR$/Papilertus-Economy" />
+            <option value="$PROJECT_DIR$/Papilertus-Fun" />
+            <option value="$PROJECT_DIR$/Papilertus-Music" />
             <option value="$PROJECT_DIR$/Papilertus-Utils" />
           </set>
         </option>
