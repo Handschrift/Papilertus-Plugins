@@ -14,20 +14,21 @@ import java.util.List;
 
 public class FunPlugin implements Plugin {
 
+    private FunConfig funConfig;
     private PluginDataStore dataStore;
-    private static PluginConfig config;
 
     @Override
     public void onLoad(PluginData pluginData) {
-        config = new PluginConfig(pluginData);
-        config.addEntry("amount_of_images", 165);
+        final PluginConfig config = new PluginConfig(pluginData);
+        config.fromObject(new FunConfig());
+        funConfig = config.toObject(FunConfig.class);
         dataStore = new PluginDataStore(pluginData);
     }
 
     @Override
     public List<Command> getCommands() {
         final ArrayList<Command> commands = new ArrayList<>();
-        commands.add(new MemeCommand());
+        commands.add(new MemeCommand(funConfig.getMemeSubreddit()));
         commands.add(new SpiritAnimalCommand(dataStore));
         return commands;
     }
@@ -40,13 +41,5 @@ public class FunPlugin implements Plugin {
     @Override
     public void onUnload() {
 
-    }
-
-    public PluginDataStore getDataStore() {
-        return dataStore;
-    }
-
-    public static PluginConfig getConfig() {
-        return config;
     }
 }

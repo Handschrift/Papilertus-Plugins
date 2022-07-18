@@ -16,10 +16,13 @@ import java.net.http.HttpResponse;
 
 public class MemeCommand extends Command {
 
-    public MemeCommand() {
+    private final String memeSubReddit;
+
+    public MemeCommand(String memeSubreddit) {
         setName("meme");
         setDescription("sends a meme");
         setData(Commands.slash(getName(), getDescription()));
+        this.memeSubReddit = memeSubreddit;
     }
 
     @Override
@@ -27,7 +30,7 @@ public class MemeCommand extends Command {
         final HttpClient client = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).followRedirects(HttpClient.Redirect.NORMAL).build();
 
         final HttpRequest request = HttpRequest.newBuilder()
-                .GET().uri(URI.create("https://reddit.com/r/memes/random.json")).build();
+                .GET().uri(URI.create("https://reddit.com/" + memeSubReddit + "/random.json")).build();
 
         final EmbedBuilder builder = new EmbedBuilder();
         builder.setColor(Color.RED);
